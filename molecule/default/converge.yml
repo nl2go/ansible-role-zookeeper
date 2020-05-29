@@ -1,0 +1,6 @@
+---
+- name: Configure hosts
+  hosts: all
+  become: yes
+  roles:
+    - role: ansible-role-zookeeper

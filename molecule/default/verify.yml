@@ -1,0 +1,7 @@
+---
+- name: Verify keepalived
+  hosts: all
+  tasks:
+    - name: Verify
+      debug:
+        msg: Verify ZooKeeper installation

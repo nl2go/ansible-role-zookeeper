@@ -1,0 +1,5 @@
+---
+  - import_tasks: install.yml
+    tags: [zookeeper, zookeeper_install, install]
+  - import_tasks: config.yml
+    tags: [zookeeper, zookeeper_config, config]
