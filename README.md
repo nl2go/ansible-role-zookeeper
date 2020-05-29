@@ -13,7 +13,7 @@ Available variables listed below, along with default values (see `defaults/main.
 
 ## Dependencies
 
-None.
+- [nl2go.openjdk](https://galaxy.ansible.com/nl2go/openjdk)
 
 ## Example Playbook
 

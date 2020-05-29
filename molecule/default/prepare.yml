@@ -1,0 +1,5 @@
+---
+- name: Install required roles
+  hosts: all
+  roles:
+    - nl2go.openjdk
