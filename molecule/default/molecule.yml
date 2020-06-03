@@ -22,6 +22,7 @@ provisioner:
   inventory:
     group_vars:
       all:
+        zookeeper_version: 3.6.1
         zookeeper_members: "{{ groups['all'] | map('extract', hostvars, 'ansible_default_ipv4') | map(attribute='address') | list }}"
     host_vars:
       instance1:

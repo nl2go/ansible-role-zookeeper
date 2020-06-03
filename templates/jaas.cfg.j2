@@ -1,5 +1,3 @@
-# {{ ansible_managed }}
-
 Server {
        org.apache.zookeeper.server.auth.DigestLoginModule required
        user_{{ zookeeper_auth_client_username }}="{{ zookeeper_auth_client_password }}";
