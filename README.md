@@ -11,6 +11,54 @@ An Ansible Role that manages installation and configuration of [Apache ZooKeeper
 
 Available variables listed below, along with default values (see `defaults/main.yml`):
 
+    zookeeper_version: 3.6.1
+
+ZooKeeper application version.
+
+    zookeeper_dir: /opt/zookeeper
+
+Application files directory.
+
+    zookeeper_data_dir: /var/zookeeper
+
+Server data directory.
+
+    zookeeper_conf_dir: /etc/zookeeper
+    
+Server configuration directory.
+
+    zookeeper_log_dir: /var/log/zookeeper
+
+Server log directory.
+
+    zookeeper_client_port: 2181
+    
+The port clients can connect to.
+
+    zookeeper_init_limit: 5
+    zookeeper_sync_limit: 2
+    zookeeper_tick_time: 2000
+
+Consult official [ZooKeeper documentation](https://zookeeper.apache.org/doc/r3.6.1/zookeeperAdmin.html#sc_configuration) for details.    
+    
+    zookeeper_members: []
+    
+ZooKeeper cluster members. Accepts hostname, FQDN or IP list.
+    
+    zookeeper_member_id: 1
+    
+ID of the current cluster member (index of the member's hostname, FQDN or IP in the `zookeeper_members` list).
+    
+    zookeeper_auth_server_username: foo
+    zookeeper_auth_server_password: foz
+    
+SASL based authentication for the cluster member communication. 
+    
+    zookeeper_auth_client_username: bar
+    zookeeper_auth_client_password: baz
+    
+SASL based authentication for the clients.
+
 ## Dependencies
 
 - [nl2go.openjdk](https://galaxy.ansible.com/nl2go/openjdk)
