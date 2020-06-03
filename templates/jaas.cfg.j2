@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+Server {
+       org.apache.zookeeper.server.auth.DigestLoginModule required
+       user_{{ zookeeper_auth_client_username }}="{{ zookeeper_auth_client_password }}";
+};
+
+QuorumServer {
+       org.apache.zookeeper.server.auth.DigestLoginModule required
+       user_{{ zookeeper_auth_server_username }}="{{ zookeeper_auth_server_password }}";
+};
+
+QuorumLearner {
+       org.apache.zookeeper.server.auth.DigestLoginModule required
+       username="{{ zookeeper_auth_server_username }}"
+       password="{{ zookeeper_auth_server_password }}";
+};

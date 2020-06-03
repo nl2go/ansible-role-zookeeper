@@ -1,3 +1,5 @@
+# {{ ansible_managed }}
+
 tickTime={{ zookeeper_tick_time }}
 dataDir={{ zookeeper_data_dir }}
 initLimit={{ zookeeper_init_limit }}
@@ -6,3 +8,11 @@ clientPort={{ zookeeper_client_port }}
 {% for member in zookeeper_members %}
 server.{{ loop.index }}={{ member }}:2888:3888
 {% endfor %}
+
+#authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider
+#requireClientAuthScheme=sasl
+
+quorum.auth.enableSasl=true
+quorum.auth.learnerRequireSasl=true
+quorum.auth.serverRequireSasl=true
+quorum.cnxn.threads.size=20

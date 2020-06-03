@@ -12,6 +12,13 @@
     mode: '0644'
   notify: Reload zookeeper
 
+- name: Create JAAS config file
+  template:
+    src: jaas.cfg.j2
+    dest: "{{ zookeeper_conf_dir }}/jaas.cfg"
+    mode: '0600'
+  notify: Reload zookeeper
+
 - name: Create myid file
   copy:
     dest: "{{ zookeeper_data_dir }}/myid"

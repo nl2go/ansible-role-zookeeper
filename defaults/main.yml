@@ -10,3 +10,7 @@ zookeeper_sync_limit: 2
 zookeeper_tick_time: 2000
 zookeeper_members: []
 zookeeper_member_id: 1
+zookeeper_auth_server_username: foo
+zookeeper_auth_server_password: foz
+zookeeper_auth_client_username: bar
+zookeeper_auth_client_password: baz
