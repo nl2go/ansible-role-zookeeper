@@ -1,0 +1,8 @@
+tickTime={{ zookeeper_tick_time }}
+dataDir={{ zookeeper_data_dir }}
+initLimit={{ zookeeper_init_limit }}
+syncLimit={{ zookeeper_sync_limit }}
+clientPort={{ zookeeper_client_port }}
+{% for member in zookeeper_members %}
+server.{{ loop.index }}={{ member }}:2888:3888
+{% endfor %}

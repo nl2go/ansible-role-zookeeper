@@ -22,7 +22,15 @@ provisioner:
   inventory:
     group_vars:
       all:
-        foo: bar
+        zookeeper_members: "{{ groups['all'] | map('extract', hostvars, 'ansible_default_ipv4') | map(attribute='address') | list }}"
+    host_vars:
+      instance1:
+        zookeeper_member_id: 1
+      instance2:
+        zookeeper_member_id: 2
+      instance3:
+        zookeeper_member_id: 3
+
   lint: |
     set -e
     ansible-lint

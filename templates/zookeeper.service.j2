@@ -1,0 +1,21 @@
+[Unit]
+Description=Zookeeper Daemon
+Documentation=http://zookeeper.apache.org
+Requires=network.target
+After=network.target
+
+[Service]
+SuccessExitStatus=143
+Environment=ZOO_LOG_DIR={{ zookeeper_log_dir }}
+Type=forking
+WorkingDirectory={{ zookeeper_dir }}/{{ zookeeper_version }}
+User=root
+Group=root
+ExecStart={{ zookeeper_dir }}/{{ zookeeper_version }}/bin/zkServer.sh start {{ zookeeper_conf_dir }}/zookeeper.cfg
+ExecStop={{ zookeeper_dir }}/{{ zookeeper_version }}/bin/zkServer.sh stop {{ zookeeper_conf_dir }}/zookeeper.cfg
+ExecReload={{ zookeeper_dir }}/{{ zookeeper_version }}/bin/zkServer.sh restart {{ zookeeper_conf_dir }}/zookeeper.cfg
+TimeoutSec=30
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

@@ -1,4 +1,20 @@
 ---
-- name: Config
-  debug:
-    msg: Config ZooKeeper
+- name: Create ZooKeeper config dir
+  file:
+    path: "{{ zookeeper_conf_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Create ZooKeeper config file
+  template:
+    src: zookeeper.cfg.j2
+    dest: "{{ zookeeper_conf_dir }}/zookeeper.cfg"
+    mode: '0644'
+  notify: Reload zookeeper
+
+- name: Create myid file
+  copy:
+    dest: "{{ zookeeper_data_dir }}/myid"
+    content: "{{ zookeeper_member_id }}"
+    mode: '0644'
+  notify: Reload zookeeper
