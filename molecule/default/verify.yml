@@ -5,6 +5,7 @@
     - name: Get ZooKeeper service status
       command: service zookeeper status
       register: service_status
+      changed_when: no
     - name: Verify ZooKeeper is running
       assert:
         that:
@@ -12,6 +13,7 @@
     - name: Get ZooKeeper server status
       shell: echo srvr | nc localhost 2181
       register: server_status
+      changed_when: no
     - name: Verify ZooKeeper server are connected
       assert:
         that:
@@ -24,3 +26,20 @@
       assert:
         that:
           - "'Mode: leader' in server_status.stdout or 'Mode: follower' in server_status.stdout"
+    - name: Get open ports
+      command: netstat -tulpn | grep java
+      register: port_status
+      changed_when: no
+    - name: Verify JMX ports and host
+      assert:
+        that:
+          - "'{{ zookeeper_jmx_host }}:{{ zookeeper_jmx_rmi_port }}' in port_status.stdout"
+          - "'{{ zookeeper_jmx_host }}:{{ zookeeper_jmx_port }}' in port_status.stdout"
+    - name: Test JMX connection
+      shell: echo "exit" | java -jar /opt/jmxterm.jar -l {{ zookeeper_jmx_host }}:{{ zookeeper_jmx_port }} -u {{ zookeeper_jmx_username }} -p {{ zookeeper_jmx_password }}
+      register: jmx_status
+      changed_when: no
+    - name: Verify JMX connection
+      assert:
+        that:
+          - "'Welcome to JMX terminal' in jmx_status.stderr"

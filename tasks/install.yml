@@ -38,14 +38,4 @@
     dest: "/etc/systemd/system/zookeeper.service"
     mode: '0644'
   register: zookeeper_service
-  notify: Reload zookeeper
-
-- name: Reload systemd
-  command: systemctl daemon-reload
-  when: zookeeper_service.changed
-
-- name: Enable and start ZooKeeper service
-  systemd:
-    name: zookeeper
-    enabled: yes
-    state: started
+  notify: Update ZooKeeper

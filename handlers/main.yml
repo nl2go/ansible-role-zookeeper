@@ -1,5 +1,14 @@
 ---
-- name: Reload zookeeper
+- name: Enable ZooKeeper
   systemd:
     name: zookeeper
-    state: reloaded
+    enabled: yes
+    state: started
+    daemon_reload: yes
+  listen: Update ZooKeeper
+
+- name: Restart ZooKeeper
+  systemd:
+    name: zookeeper
+    state: restarted
+  listen: Update ZooKeeper

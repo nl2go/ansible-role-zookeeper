@@ -10,18 +10,39 @@
     src: zookeeper.cfg.j2
     dest: "{{ zookeeper_conf_dir }}/zookeeper.cfg"
     mode: '0644'
-  notify: Reload zookeeper
+  notify: Restart ZooKeeper
 
 - name: Create JAAS config file
   template:
     src: jaas.cfg.j2
     dest: "{{ zookeeper_conf_dir }}/jaas.cfg"
     mode: '0600'
-  notify: Reload zookeeper
+  notify: Restart ZooKeeper
 
 - name: Create myid file
   copy:
     dest: "{{ zookeeper_data_dir }}/myid"
     content: "{{ zookeeper_member_id }}"
     mode: '0644'
-  notify: Reload zookeeper
+  notify: Restart ZooKeeper
+
+- name: Create env file
+  template:
+    src: zookeeper.env.j2
+    dest: "{{ zookeeper_conf_dir }}/zookeeper.env"
+    mode: '0644'
+  notify: Restart ZooKeeper
+
+- name: Create JMX password file
+  template:
+    src: jmxremote.password.j2
+    dest: "{{ zookeeper_conf_dir }}/jmxremote.password"
+    mode: '0600'
+  notify: Restart ZooKeeper
+
+- name: Create JMX password file
+  template:
+    src: jmxremote.access.j2
+    dest: "{{ zookeeper_conf_dir }}/jmxremote.access"
+    mode: '0600'
+  notify: Restart ZooKeeper

@@ -23,6 +23,11 @@ provisioner:
     group_vars:
       all:
         zookeeper_version: 3.6.1
+        zookeeper_jmx_host: 127.0.0.1
+        zookeeper_jmx_port: 9181
+        zookeeper_jmx_rmi_port: 9182
+        zookeeper_jmx_username: foz
+        zookeeper_jmx_password: baz
         zookeeper_members: "{{ groups['all'] | map('extract', hostvars, 'ansible_default_ipv4') | map(attribute='address') | list }}"
     host_vars:
       instance1:
