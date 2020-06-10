@@ -59,6 +59,34 @@ SASL based authentication for the cluster member communication.
     
 SASL based authentication for the clients.
 
+    zookeeper_jmx_host: 127.0.0.1
+
+Hostname/IP JMX will be exposed on.
+
+    zookeeper_jmx_port: 9181
+
+JMX remote agent port.
+
+    zookeeper_jmx_rmi_port: 9182
+
+RMI connector port.
+
+    zookeeper_jmx_username: foz
+
+JMX username.
+
+    zookeeper_jmx_password: baz
+
+JMX user password.
+
+    zookeeper_jmx_role: readonly
+
+JMX user role.    
+
+    zookeeper_4lw_commands_whitelist: srvr,stat,mntr
+
+Whitelisting of ZooKeeper [4lw commands](https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_zkCommands).
+
 ## Dependencies
 
 - [nl2go.openjdk](https://galaxy.ansible.com/nl2go/openjdk)
