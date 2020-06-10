@@ -1,5 +1,5 @@
 ---
-- name: Verify keepalived
+- name: Verify ZooKeeper state
   hosts: all
   tasks:
     - name: Get ZooKeeper service status
@@ -43,3 +43,11 @@
       assert:
         that:
           - "'Welcome to JMX terminal' in jmx_status.stderr"
+    - name: Get mntr status
+      shell: echo mntr | nc localhost 2181
+      register: mntr_status
+      changed_when: no
+    - name: Verify mntr status
+      assert:
+        that:
+          - "'zk_version	{{ zookeeper_version }}' in mntr_status.stdout"

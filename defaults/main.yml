@@ -20,3 +20,4 @@ zookeeper_jmx_rmi_port: 9182
 zookeeper_jmx_username: foz
 zookeeper_jmx_password: baz
 zookeeper_jmx_role: readonly
+zookeeper_4lw_commands_whitelist: srvr,stat,mntr
