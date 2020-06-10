@@ -8,6 +8,13 @@ zookeeper_client_port: 2181
 zookeeper_init_limit: 5
 zookeeper_sync_limit: 2
 zookeeper_tick_time: 2000
+zookeeper_global_outstanding_limit: 1000
+zookeeper_prealloc_size: 64M
+zookeeper_snap_count: 100000
+zookeeper_max_client_cnxns: 10
+zookeeper_min_session_timeout: "{{ 2 * zookeeper_tick_time }}"
+zookeeper_max_session_timeout: "{{ 20 * zookeeper_tick_time }}"
+zookeeper_fsync_warning_threshold_ms: 1000
 zookeeper_members: []
 zookeeper_member_id: 1
 zookeeper_auth_server_username: foo

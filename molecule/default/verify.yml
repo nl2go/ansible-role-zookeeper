@@ -51,3 +51,14 @@
       assert:
         that:
           - "'zk_version	{{ zookeeper_version }}' in mntr_status.stdout"
+    - name: Get ZooKeeper process log
+      shell: cat /var/log/zookeeper/zookeeper-*.out
+      register: log_result
+      changed_when: no
+    - name: Verify ZooKeeper configuration options
+      assert:
+        that:
+          - "'Created server with tickTime {{ zookeeper_tick_time }} minSessionTimeout {{ zookeeper_min_session_timeout }} \
+           maxSessionTimeout {{ zookeeper_max_session_timeout }}' in log_result.stdout"
+          - "'initLimit set to {{ zookeeper_init_limit }}' in log_result.stdout"
+          - "'syncLimit set to {{ zookeeper_sync_limit }}' in log_result.stdout"

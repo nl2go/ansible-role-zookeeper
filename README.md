@@ -87,6 +87,34 @@ JMX user role.
 
 Whitelisting of ZooKeeper [4lw commands](https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_zkCommands).
 
+    zookeeper_global_outstanding_limit: 1000
+
+s. [ZooKeeper Administrator's Guide].
+    
+    zookeeper_prealloc_size: 64M
+
+s. [ZooKeeper Administrator's Guide].
+    
+    zookeeper_snap_count: 100000
+    
+s. [ZooKeeper Administrator's Guide].
+
+    zookeeper_max_client_cnxns: 10
+
+s. [ZooKeeper Administrator's Guide].
+
+    zookeeper_min_session_timeout: "{{ 2 * zookeeper_tick_time }}"
+
+s. [ZooKeeper Administrator's Guide].
+
+    zookeeper_max_session_timeout: "{{ 20 * zookeeper_tick_time }}"
+
+s. [ZooKeeper Administrator's Guide].
+
+    zookeeper_fsync_warning_threshold_ms: 1000
+    
+s. [ZooKeeper Administrator's Guide].
+
 ## Dependencies
 
 - [nl2go.openjdk](https://galaxy.ansible.com/nl2go/openjdk)
