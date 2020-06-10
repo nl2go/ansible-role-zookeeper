@@ -28,6 +28,7 @@ provisioner:
         zookeeper_jmx_rmi_port: 9182
         zookeeper_jmx_username: foz
         zookeeper_jmx_password: baz
+        zookeeper_heap_size: 1024
         zookeeper_members: "{{ groups['all'] | map('extract', hostvars, 'ansible_default_ipv4') | map(attribute='address') | list }}"
     host_vars:
       instance1:

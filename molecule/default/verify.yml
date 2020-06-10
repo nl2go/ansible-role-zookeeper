@@ -51,3 +51,11 @@
       assert:
         that:
           - "'zk_version	{{ zookeeper_version }}' in mntr_status.stdout"
+    - name: Get ZooKeeper process information
+      shell: ps uax | grep zookeeper
+      register: process_result
+      changed_when: no
+    - name: Verify ZooKeeper process settings
+      assert:
+        that:
+          - "'-Xmx{{ zookeeper_heap_size }}m' in process_result.stdout"
