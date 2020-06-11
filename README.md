@@ -87,6 +87,10 @@ JMX user role.
 
 Whitelisting of ZooKeeper [4lw commands](https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_zkCommands).
 
+    zookeeper_heap_size: 1024
+
+JVM heap size in MB.
+
 ## Dependencies
 
 - [nl2go.openjdk](https://galaxy.ansible.com/nl2go/openjdk)
