@@ -115,6 +115,10 @@ s. [ZooKeeper Administrator's Guide].
     
 s. [ZooKeeper Administrator's Guide].
 
+    zookeeper_heap_size: 1024
+
+JVM heap size in MB.
+
 ## Dependencies
 
 - [nl2go.openjdk](https://galaxy.ansible.com/nl2go/openjdk)

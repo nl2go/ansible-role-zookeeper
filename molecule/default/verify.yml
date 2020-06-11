@@ -62,3 +62,11 @@
            maxSessionTimeout {{ zookeeper_max_session_timeout }}' in log_result.stdout"
           - "'initLimit set to {{ zookeeper_init_limit }}' in log_result.stdout"
           - "'syncLimit set to {{ zookeeper_sync_limit }}' in log_result.stdout"
+    - name: Get ZooKeeper process information
+      shell: ps uax | grep zookeeper
+      register: process_result
+      changed_when: no
+    - name: Verify ZooKeeper process settings
+      assert:
+        that:
+          - "'-Xmx{{ zookeeper_heap_size }}m' in process_result.stdout"
