@@ -36,11 +36,11 @@ provisioner:
         zookeeper_heap_size: 1024
         zookeeper_members: "{{ groups['all'] | map('extract', hostvars, 'ansible_default_ipv4') | map(attribute='address') | list }}"
     host_vars:
-      instance1:
+      "${MOLECULE_TEST_SCOPE:-default}-instance1":
         zookeeper_member_id: 1
-      instance2:
+      "${MOLECULE_TEST_SCOPE:-default}-instance2":
         zookeeper_member_id: 2
-      instance3:
+      "${MOLECULE_TEST_SCOPE:-default}-instance3":
         zookeeper_member_id: 3
 
   lint: |
