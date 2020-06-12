@@ -5,13 +5,13 @@ lint: |
   set -e
   yamllint .
 platforms:
-  - name: instance1
+  - name: instance1-${MOLECULE_TEST_SCOPE:-default}
     server_type: cx11
     image: debian-10
-  - name: instance2
+  - name: instance2-${MOLECULE_TEST_SCOPE:-default}
     server_type: cx11
     image: debian-10
-  - name: instance3
+  - name: instance3-${MOLECULE_TEST_SCOPE:-default}
     server_type: cx11
     image: debian-10
 provisioner:
