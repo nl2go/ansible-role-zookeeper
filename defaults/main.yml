@@ -17,10 +17,11 @@ zookeeper_max_session_timeout: "{{ 20 * zookeeper_tick_time }}"
 zookeeper_fsync_warning_threshold_ms: 1000
 zookeeper_members: []
 zookeeper_member_id: 1
-zookeeper_auth_server_username: foo
-zookeeper_auth_server_password: foz
-zookeeper_auth_client_username: bar
-zookeeper_auth_client_password: baz
+zookeeper_server_username: foo
+zookeeper_server_password: foz
+zookeeper_clients:
+  - username: bar
+    password: baz
 zookeeper_jmx_host: 127.0.0.1
 zookeeper_jmx_port: 9181
 zookeeper_jmx_rmi_port: 9182

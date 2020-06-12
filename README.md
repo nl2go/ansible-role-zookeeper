@@ -49,13 +49,14 @@ ZooKeeper cluster members. Accepts hostname, FQDN or IP list.
     
 ID of the current cluster member (index of the member's hostname, FQDN or IP in the `zookeeper_members` list).
     
-    zookeeper_auth_server_username: foo
-    zookeeper_auth_server_password: foz
+    zookeeper_server_username: foo
+    zookeeper_server_password: foz
     
 SASL based authentication for the cluster member communication. 
     
-    zookeeper_auth_client_username: bar
-    zookeeper_auth_client_password: baz
+    zookeeper_clients:
+      - username: bar
+        password: baz
     
 SASL based authentication for the clients.
 
