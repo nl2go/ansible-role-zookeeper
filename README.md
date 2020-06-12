@@ -155,4 +155,4 @@ See the [LICENSE.md](LICENSE.md) file for details.
 
 This role was created in 2020 by [Newsletter2Go GmbH](https://www.newsletter2go.com/).
 
-[ZooKeeper Administrator's Guide]: (https://zookeeper.apache.org/doc/r3.6.1/zookeeperAdmin.html)
+[ZooKeeper Administrator's Guide]: https://zookeeper.apache.org/doc/r3.6.1/zookeeperAdmin.html
