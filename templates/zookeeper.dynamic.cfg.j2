@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+{% for member in zookeeper_members %}
+server.{{ loop.index }}={{ member }}:2888:3888
+{% endfor %}

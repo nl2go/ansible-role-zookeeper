@@ -16,6 +16,14 @@
     group: zookeeper
   notify: Restart ZooKeeper
 
+- name: Create ZooKeeper dynamic config file
+  template:
+    src: zookeeper.dynamic.cfg.j2
+    dest: "{{ zookeeper_conf_dir }}/zookeeper.dynamic.cfg"
+    mode: '0644'
+    owner: zookeeper
+    group: zookeeper
+
 - name: Create JAAS config file
   template:
     src: jaas.cfg.j2
