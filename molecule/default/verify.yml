@@ -62,6 +62,7 @@
            maxSessionTimeout {{ zookeeper_max_session_timeout }}' in log_result.stdout"
           - "'initLimit set to {{ zookeeper_init_limit }}' in log_result.stdout"
           - "'syncLimit set to {{ zookeeper_sync_limit }}' in log_result.stdout"
+          - "'Successfully completed the authentication using SASL. learner addr' in log_result.stdout"
     - name: Get ZooKeeper process information
       shell: ps uax | grep zookeeper
       register: process_result
