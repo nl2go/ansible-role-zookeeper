@@ -12,3 +12,16 @@
         url: https://github.com/jiaqi/jmxterm/releases/download/v1.0.1/jmxterm-1.0.1-uber.jar
         dest: /opt/jmxterm.jar
         mode: '0755'
+
+- name: Prepare ZooKeeper client
+  hosts: all
+  tasks:
+    - name: Create ZooKeeper JAAS client config
+      copy:
+        content: |
+          Client {
+            org.apache.zookeeper.server.auth.DigestLoginModule required
+            username="{{ zookeeper_clients[0].username }}"
+            password="{{ zookeeper_clients[0].password }}";
+          };
+        dest: "{{ zookeeper_test_client_sasl_conf }}"

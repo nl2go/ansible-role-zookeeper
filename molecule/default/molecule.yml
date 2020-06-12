@@ -22,6 +22,11 @@ provisioner:
   inventory:
     group_vars:
       all:
+        zookeeper_test_client_sasl_conf: /tmp/jaas.client.cfg
+        zookeeper_clients:
+          - username: bar
+            password: baz
+        zookeeper_dir: /opt/zookeeper
         zookeeper_version: 3.6.1
         zookeeper_jmx_host: 127.0.0.1
         zookeeper_jmx_port: 9181
