@@ -7,14 +7,13 @@ env:
     - MOLECULE_PROJECT_DIR: "$TRAVIS_BUILD_DIR"
     - MOLECULE_ROLE_NAME: "$(basename $TRAVIS_BUILD_DIR)"
     - HCLOUD_TOKEN: "$HCLOUD_TOKEN"
-    - MOLECULE_TEST_SCOPE: "$TRAVIS_BUILD_ID"
 
 before_script:
-  - wget https://raw.githubusercontent.com/nl2go/docker-molecule/3.0.2-n2g-1.0.1/docker-compose.yml
+  - wget https://raw.githubusercontent.com/nl2go/docker-molecule/3.0.4-n2g-1.0.0/docker-compose.yml
   - docker-compose up -d
 
 script:
-  - docker-compose exec -e HCLOUD_TOKEN="$HCLOUD_TOKEN" -e MOLECULE_TEST_SCOPE="$MOLECULE_TEST_SCOPE" molecule molecule test --all
+  - docker-compose exec -e HCLOUD_TOKEN="$HCLOUD_TOKEN" molecule molecule test --all
 
 after_script:
   - docker-compose down
