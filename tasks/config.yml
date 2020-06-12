@@ -4,12 +4,16 @@
     path: "{{ zookeeper_conf_dir }}"
     state: directory
     mode: '0755'
+    owner: zookeeper
+    group: zookeeper
 
 - name: Create ZooKeeper config file
   template:
     src: zookeeper.cfg.j2
     dest: "{{ zookeeper_conf_dir }}/zookeeper.cfg"
     mode: '0644'
+    owner: zookeeper
+    group: zookeeper
   notify: Restart ZooKeeper
 
 - name: Create JAAS config file
@@ -17,6 +21,8 @@
     src: jaas.cfg.j2
     dest: "{{ zookeeper_conf_dir }}/jaas.cfg"
     mode: '0600'
+    owner: zookeeper
+    group: zookeeper
   notify: Restart ZooKeeper
 
 - name: Create myid file
@@ -24,6 +30,8 @@
     dest: "{{ zookeeper_data_dir }}/myid"
     content: "{{ zookeeper_member_id }}"
     mode: '0644'
+    owner: zookeeper
+    group: zookeeper
   notify: Restart ZooKeeper
 
 - name: Create env file
@@ -31,6 +39,8 @@
     src: zookeeper.env.j2
     dest: "{{ zookeeper_conf_dir }}/zookeeper.env"
     mode: '0644'
+    owner: zookeeper
+    group: zookeeper
   notify: Restart ZooKeeper
 
 - name: Create JMX password file
@@ -38,6 +48,8 @@
     src: jmxremote.password.j2
     dest: "{{ zookeeper_conf_dir }}/jmxremote.password"
     mode: '0600'
+    owner: zookeeper
+    group: zookeeper
   notify: Restart ZooKeeper
 
 - name: Create JMX password file
@@ -45,4 +57,6 @@
     src: jmxremote.access.j2
     dest: "{{ zookeeper_conf_dir }}/jmxremote.access"
     mode: '0600'
+    owner: zookeeper
+    group: zookeeper
   notify: Restart ZooKeeper

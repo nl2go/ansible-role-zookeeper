@@ -1,15 +1,29 @@
 ---
+- name: Add ZooKeeper group
+  group:
+    name: zookeeper
+    state: present
+
+- name: Add ZooKeeper user
+  user:
+    name: zookeeper
+    group: zookeeper
+
 - name: Create ZooKeeper dir
   file:
     path: "{{ zookeeper_dir }}"
     state: directory
     mode: '0755'
+    owner: zookeeper
+    group: zookeeper
 
 - name: Create ZooKeeper version dir
   file:
     path: "{{ zookeeper_dir }}/{{ zookeeper_version }}"
     state: directory
     mode: '0755'
+    owner: zookeeper
+    group: zookeeper
   register: zookeeper_version_dir
 
 - name: Download and extract ZooKeeper
@@ -24,12 +38,16 @@
   file:
     path: "{{ zookeeper_data_dir }}"
     state: directory
+    owner: zookeeper
+    group: zookeeper
     mode: '0755'
 
 - name: Create ZooKeeper log dir
   file:
     path: "{{ zookeeper_log_dir }}"
     state: directory
+    owner: zookeeper
+    group: zookeeper
     mode: '0755'
 
 - name: Create ZooKeeper service
@@ -37,5 +55,7 @@
     src: zookeeper.service.j2
     dest: "/etc/systemd/system/zookeeper.service"
     mode: '0644'
+    owner: zookeeper
+    group: zookeeper
   register: zookeeper_service
   notify: Update ZooKeeper
