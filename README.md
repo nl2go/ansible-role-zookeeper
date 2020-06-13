@@ -31,6 +31,22 @@ Server configuration directory.
 
 Server log directory.
 
+    zookeeper_log_file: zookeeper.log
+
+Log file name.
+    
+    zookeeper_log_level: INFO
+    
+Logging level.    
+    
+    zookeeper_log_max_file_size: 265MB
+    
+Max log file size before rotation.
+    
+    zookeeper_log_max_backup_index: 20
+
+Max log file number to keep.
+
     zookeeper_client_port: 2181
     
 The port clients can connect to.

@@ -34,6 +34,10 @@ provisioner:
         zookeeper_min_session_timeout: "{{ 2 * zookeeper_tick_time }}"
         zookeeper_max_session_timeout: "{{ 20 * zookeeper_tick_time }}"
         zookeeper_heap_size: 1024
+        zookeeper_log_dir: /var/log/zookeeper
+        zookeeper_log_file: zookeeper.log
+        zookeeper_log_max_file_size: 265MB
+        zookeeper_log_max_backup_index: 20
         zookeeper_members: "{{ groups['all'] | map('extract', hostvars, 'ansible_default_ipv4') | map(attribute='address') | list }}"
     host_vars:
       "${MOLECULE_TEST_SCOPE:-default}-instance1":

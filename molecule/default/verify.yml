@@ -52,7 +52,7 @@
         that:
           - "'zk_version	{{ zookeeper_version }}' in mntr_status.stdout"
     - name: Get ZooKeeper process log
-      shell: cat /var/log/zookeeper/zookeeper-*.out
+      shell: "cat {{ zookeeper_log_dir }}/{{ zookeeper_log_file }}"
       register: log_result
       changed_when: no
     - name: Verify ZooKeeper configuration options
@@ -71,3 +71,7 @@
       assert:
         that:
           - "'-Xmx{{ zookeeper_heap_size }}m' in process_result.stdout"
+          - "'-Dzookeeper.log.file={{ zookeeper_log_file }}' in process_result.stdout"
+          - "'-Dzookeeper.log.dir={{ zookeeper_log_dir }}' in process_result.stdout"
+          - "'-Dzookeeper.log.maxfilesize={{ zookeeper_log_max_file_size }}' in process_result.stdout"
+          - "'-Dzookeeper.log.maxbackupindex={{ zookeeper_log_max_backup_index }}' in process_result.stdout"
