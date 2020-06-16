@@ -7,13 +7,13 @@ lint: |
 platforms:
   - name: ${MOLECULE_TEST_SCOPE:-default}-instance1
     server_type: cx11
-    image: debian-10
+    image: ${MOLECULE_PLATFORM-debian-10}
   - name: ${MOLECULE_TEST_SCOPE:-default}-instance2
     server_type: cx11
-    image: debian-10
+    image: ${MOLECULE_PLATFORM-debian-10}
   - name: ${MOLECULE_TEST_SCOPE:-default}-instance3
     server_type: cx11
-    image: debian-10
+    image: ${MOLECULE_PLATFORM-debian-10}
 provisioner:
   name: ansible
   config_options:
