@@ -75,3 +75,17 @@
           - "'-Dzookeeper.log.dir={{ zookeeper_log_dir }}' in process_result.stdout"
           - "'-Dzookeeper.log.maxfilesize={{ zookeeper_log_max_file_size }}' in process_result.stdout"
           - "'-Dzookeeper.log.maxbackupindex={{ zookeeper_log_max_backup_index }}' in process_result.stdout"
+
+- name: Verify ZooKeeper client SASL
+  hosts: all
+  environment:
+    CLIENT_JVMFLAGS: '-Djava.security.auth.login.config={{ zookeeper_test_client_sasl_conf }}'
+  tasks:
+    - name: Connect to ZooKeeper server
+      shell: "echo quit | {{ zookeeper_dir }}/{{ zookeeper_version }}/bin/zkCli.sh -server 127.0.0.1:2181"
+      register: server_connect_result
+      changed_when: no
+    - name: Verify session established successfully
+      assert:
+        that:
+          - "'Session establishment complete on server' in server_connect_result.stdout"

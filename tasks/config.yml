@@ -60,7 +60,7 @@
     group: zookeeper
   notify: Restart ZooKeeper
 
-- name: Create JMX password file
+- name: Create JMX access file
   template:
     src: jmxremote.access.j2
     dest: "{{ zookeeper_conf_dir }}/jmxremote.access"
