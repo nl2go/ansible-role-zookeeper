@@ -4,6 +4,14 @@
   roles:
     - nl2go.openjdk
 
+- name: Install required packages
+  hosts: all
+  tasks:
+    - name: Install netcat
+      package:
+        name: netcat
+        state: present
+
 - name: Download JMX CLI
   hosts: all
   tasks:
