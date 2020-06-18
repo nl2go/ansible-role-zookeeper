@@ -127,6 +127,14 @@ s. [ZooKeeper Administrator's Guide].
     zookeeper_max_session_timeout: "{{ 20 * zookeeper_tick_time }}"
 
 s. [ZooKeeper Administrator's Guide].
+    
+    zookeeper_autopurge_snapretain_count: 10
+    
+s. [Clickhouse Usage Recommendations for Zookeper].
+    
+    zookeeper_purge_interval: 1
+    
+s. [Clickhouse Usage Recommendations for Zookeper].
 
     zookeeper_fsync_warning_threshold_ms: 1000
     
@@ -172,3 +180,4 @@ See the [LICENSE.md](LICENSE.md) file for details.
 This role was created in 2020 by [Newsletter2Go GmbH](https://www.newsletter2go.com/).
 
 [ZooKeeper Administrator's Guide]: https://zookeeper.apache.org/doc/r3.6.1/zookeeperAdmin.html
+[Clickhouse Usage Recommendations for Zookeper]: https://clickhouse.tech/docs/en/operations/tips/#zookeeper

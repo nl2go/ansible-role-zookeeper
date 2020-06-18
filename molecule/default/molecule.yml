@@ -38,6 +38,8 @@ provisioner:
         zookeeper_sync_limit: 2
         zookeeper_min_session_timeout: "{{ 2 * zookeeper_tick_time }}"
         zookeeper_max_session_timeout: "{{ 20 * zookeeper_tick_time }}"
+        zookeeper_autopurge_snapretain_count: 10
+        zookeeper_purge_interval: 1
         zookeeper_heap_size: 1024
         zookeeper_log_dir: /var/log/zookeeper
         zookeeper_log_file: zookeeper.log

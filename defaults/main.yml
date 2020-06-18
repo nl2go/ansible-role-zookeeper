@@ -18,6 +18,8 @@ zookeeper_snap_count: 100000
 zookeeper_max_client_cnxns: 10
 zookeeper_min_session_timeout: "{{ 2 * zookeeper_tick_time }}"
 zookeeper_max_session_timeout: "{{ 20 * zookeeper_tick_time }}"
+zookeeper_autopurge_snapretain_count: 10
+zookeeper_purge_interval: 1
 zookeeper_fsync_warning_threshold_ms: 1000
 zookeeper_members: []
 zookeeper_member_id: 1
