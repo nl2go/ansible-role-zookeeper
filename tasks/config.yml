@@ -1,4 +1,17 @@
 ---
+- name: Convert ZooKeeper members to dict
+  set_fact:
+    zookeeper_member_dict: "{{ zookeeper_member_dict | default([]) + [{'key': index + 1, 'value': item}] }}"
+  with_items:
+    - "{{ zookeeper_members }}"
+  loop_control:
+    index_var: index
+  run_once: yes
+
+- name: Set ZooKeeper member index
+  set_fact:
+    zookeeper_member_index: "{{ zookeeper_member_dict | selectattr('value', 'equalto', zookeeper_member_id) | map(attribute='key') | first }}"
+
 - name: Create ZooKeeper config dir
   file:
     path: "{{ zookeeper_conf_dir }}"
@@ -36,7 +49,7 @@
 - name: Create myid file
   copy:
     dest: "{{ zookeeper_data_dir }}/myid"
-    content: "{{ zookeeper_member_id }}"
+    content: "{{ zookeeper_member_index }}"
     mode: '0644'
     owner: zookeeper
     group: zookeeper

@@ -21,8 +21,8 @@ zookeeper_max_session_timeout: "{{ 20 * zookeeper_tick_time }}"
 zookeeper_autopurge_snapretain_count: 10
 zookeeper_purge_interval: 1
 zookeeper_fsync_warning_threshold_ms: 1000
-zookeeper_members: []
-zookeeper_member_id: 1
+zookeeper_members: "{{ groups['all'] | map('extract', hostvars, 'ansible_default_ipv4') | map(attribute='address') | list }}"
+zookeeper_member_id: "{{ ansible_default_ipv4.address }}"
 zookeeper_server_username: foo
 zookeeper_server_password: foz
 zookeeper_clients:

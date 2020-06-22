@@ -57,11 +57,11 @@ The port clients can connect to.
 
 Consult official [ZooKeeper documentation](https://zookeeper.apache.org/doc/r3.6.1/zookeeperAdmin.html#sc_configuration) for details.    
     
-    zookeeper_members: []
+    zookeeper_members: "{{ groups['all'] | map('extract', hostvars, 'ansible_default_ipv4') | map(attribute='address') | list }}"
     
 ZooKeeper cluster members. Accepts hostname, FQDN or IP list.
     
-    zookeeper_member_id: 1
+    zookeeper_member_id: "{{ ansible_default_ipv4.address }}"
     
 ID of the current cluster member (index of the member's hostname, FQDN or IP in the `zookeeper_members` list).
     

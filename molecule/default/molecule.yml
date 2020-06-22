@@ -45,15 +45,6 @@ provisioner:
         zookeeper_log_file: zookeeper.log
         zookeeper_log_max_file_size: 265MB
         zookeeper_log_max_backup_index: 20
-        zookeeper_members: "{{ groups['all'] | map('extract', hostvars, 'ansible_default_ipv4') | map(attribute='address') | list }}"
-    host_vars:
-      "${MOLECULE_TEST_SCOPE:-default}-instance1":
-        zookeeper_member_id: 1
-      "${MOLECULE_TEST_SCOPE:-default}-instance2":
-        zookeeper_member_id: 2
-      "${MOLECULE_TEST_SCOPE:-default}-instance3":
-        zookeeper_member_id: 3
-
   lint: |
     set -e
     ansible-lint
