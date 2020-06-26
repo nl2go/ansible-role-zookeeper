@@ -1,0 +1,8 @@
+---
+- name: Verify ZooKeeper state
+  hosts: all
+  tasks:
+    - include_tasks: base.yml
+    - include_tasks: config.yml
+    - include_tasks: jmx.yml
+    - include_tasks: client_sasl.yml

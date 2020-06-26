@@ -1,0 +1,11 @@
+---
+- name: Connect to ZooKeeper server
+  shell: "echo quit | {{ zookeeper_dir }}/{{ zookeeper_version }}/bin/zkCli.sh -server 127.0.0.1:2181"
+  register: server_connect_result
+  changed_when: no
+  environment:
+    CLIENT_JVMFLAGS: '-Djava.security.auth.login.config={{ zookeeper_test_client_sasl_conf }}'
+- name: Verify session established successfully
+  assert:
+    that:
+      - "'Session establishment complete on server' in server_connect_result.stdout"

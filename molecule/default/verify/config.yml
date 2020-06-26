@@ -1,0 +1,27 @@
+---
+- name: Get ZooKeeper process log
+  shell: "cat {{ zookeeper_log_dir }}/{{ zookeeper_log_file }}"
+  register: log_result
+  changed_when: no
+- name: Verify ZooKeeper configuration options
+  assert:
+    that:
+      - "'Created server with tickTime {{ zookeeper_tick_time }} minSessionTimeout {{ zookeeper_min_session_timeout }} \
+           maxSessionTimeout {{ zookeeper_max_session_timeout }}' in log_result.stdout"
+      - "'initLimit set to {{ zookeeper_init_limit }}' in log_result.stdout"
+      - "'syncLimit set to {{ zookeeper_sync_limit }}' in log_result.stdout"
+      - "'Successfully completed the authentication using SASL. learner addr' in log_result.stdout"
+      - "'autopurge.snapRetainCount set to {{ zookeeper_autopurge_snapretain_count }}' in log_result.stdout"
+      - "'autopurge.purgeInterval set to {{ zookeeper_purge_interval }}' in log_result.stdout"
+- name: Get ZooKeeper process information
+  shell: ps uax | grep zookeeper
+  register: process_result
+  changed_when: no
+- name: Verify ZooKeeper process settings
+  assert:
+    that:
+      - "'-Xmx{{ zookeeper_heap_size }}m' in process_result.stdout"
+      - "'-Dzookeeper.log.file={{ zookeeper_log_file }}' in process_result.stdout"
+      - "'-Dzookeeper.log.dir={{ zookeeper_log_dir }}' in process_result.stdout"
+      - "'-Dzookeeper.log.maxfilesize={{ zookeeper_log_max_file_size }}' in process_result.stdout"
+      - "'-Dzookeeper.log.maxbackupindex={{ zookeeper_log_max_backup_index }}' in process_result.stdout"

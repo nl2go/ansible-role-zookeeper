@@ -1,0 +1,25 @@
+---
+- name: Get ZooKeeper service status
+  command: service zookeeper status
+  register: service_status
+  changed_when: no
+- name: Verify ZooKeeper is running
+  assert:
+    that:
+      - "'active (running)' in service_status.stdout"
+- name: Get ZooKeeper server status
+  shell: echo srvr | nc localhost 2181
+  register: server_status
+  changed_when: no
+- name: Verify ZooKeeper server are connected
+  assert:
+    that:
+      - "'Connections: 1' in server_status.stdout"
+- name: Verify ZooKeeper server version
+  assert:
+    that:
+      - "'{{ zookeeper_version }}' in server_status.stdout"
+- name: Verify ZooKeeper server mode
+  assert:
+    that:
+      - "'Mode: leader' in server_status.stdout or 'Mode: follower' in server_status.stdout"
