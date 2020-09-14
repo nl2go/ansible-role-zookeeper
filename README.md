@@ -11,7 +11,7 @@ An Ansible Role that manages installation and configuration of [Apache ZooKeeper
 
 Available variables listed below, along with default values (see `defaults/main.yml`):
 
-    zookeeper_version: 3.6.1
+    zookeeper_version: 3.6.2
 
 ZooKeeper application version.
 
