@@ -1,5 +1,5 @@
 ---
-zookeeper_version: 3.6.1
+zookeeper_version: 3.6.2
 zookeeper_dir: /opt/zookeeper
 zookeeper_data_dir: /var/zookeeper
 zookeeper_conf_dir: /etc/zookeeper
