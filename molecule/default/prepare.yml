@@ -8,9 +8,10 @@
   hosts: all
   tasks:
     - name: Install netcat
-      package:
+      apt:
         name: netcat
         state: present
+        update_cache: yes
 
 - name: Download JMX CLI
   hosts: all
